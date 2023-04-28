@@ -3,10 +3,13 @@
 void LightWindow::draw()
 {
     ImGui::Begin("Light");
-    ImGui::ColorEdit3("Color", (float*)&_color, ImGuiColorEditFlags_NoOptions);
-    ImGui::End();
 
-    _light->color(_color);
+    if (ImGui::ColorEdit3("Color", (float*)&_color, ImGuiColorEditFlags_NoOptions))
+    {
+        _light->color(_color);
+    }
+
+    ImGui::End();
 }
 
 void LightWindow::set_light(Light* light)
