@@ -12,5 +12,7 @@ public:
 
 private:
     Light* _light;
+
+    vec3   _position;
     rgb    _color;
 };

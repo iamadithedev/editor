@@ -4,7 +4,7 @@ void MaterialWindow::draw()
 {
     ImGui::Begin("Material");
 
-    if (ImGui::ColorEdit3("Diffuse color", (float*) &_diffuse, ImGuiColorEditFlags_NoOptions))
+    if (ImGui::ColorEdit3("Diffuse", (float*) &_diffuse, ImGuiColorEditFlags_NoOptions))
     {
         _material->diffuse(_diffuse);
     }
