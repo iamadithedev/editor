@@ -1,6 +1,7 @@
 #pragma once
 
 #include "editor_window.hpp"
+#include "transform.hpp"
 #include "camera.hpp"
 
 class CameraWindow final : public EditorWindow
@@ -8,9 +9,13 @@ class CameraWindow final : public EditorWindow
 public:
     void draw() final;
 
-    void set_camera(Camera* camera, float fov);
+    void set_camera(Camera* camera);
+    void set_transform(Transform* transform, const vec3& position);
 
 private:
-    Camera* _camera;
-    float   _fov;
+    Transform* _transform;
+    Camera*    _camera;
+
+    vec3  _position;
+    float _fov;
 };
