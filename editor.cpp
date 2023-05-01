@@ -31,9 +31,9 @@ void Editor::begin(int32_t width, int32_t height, float total_time)
 
 void Editor::end()
 {
-    for (auto _window : _windows)
+    for (auto window : _windows)
     {
-        _window->draw();
+        window->draw();
     }
 
     ImGui::Render();
