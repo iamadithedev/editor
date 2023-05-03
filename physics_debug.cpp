@@ -12,7 +12,7 @@ void PhysicsDebug::drawLine(const btVector3& a, const btVector3& b, const btVect
     _geometry.add_vertex({{ a.x(), a.y(), a.z() }, rgb });
     _geometry.add_vertex({{ b.x(), b.y(), b.z() }, rgb });
 
-    _geometry.add_line(_index++, _index++);
+    _geometry.add_face({ _index++, _index++ });
 }
 
 int32_t PhysicsDebug::getDebugMode() const
@@ -33,7 +33,7 @@ void PhysicsDebug::clearLines()
     _index = 0;
 }
 
-const MeshGeometry<vertex::debug>& PhysicsDebug::geometry() const
+const MeshGeometry<mesh_vertex::debug, line>& PhysicsDebug::geometry() const
 {
     return _geometry;
 }
