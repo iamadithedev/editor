@@ -1,16 +1,13 @@
 #pragma once
 
-#include "mesh_geometry.hpp"
-#include "mesh_primitive.hpp"
-
-using line = mesh_primitive<2>;
+#include "mesh_utils.hpp"
 
 class PhysicsDebug final : public btIDebugDraw
 {
 public:
     PhysicsDebug();
 
-    [[nodiscard]] const MeshGeometry<mesh_vertex::debug, line>& geometry() const;
+    [[nodiscard]] const line_geometry& geometry() const;
 
 private:
     void clearLines() final;
@@ -20,6 +17,6 @@ private:
 
     [[nodiscard]] int32_t getDebugMode() const final;
 
-    MeshGeometry<mesh_vertex::debug, line> _geometry;
-    uint32_t                               _index;
+    line_geometry _geometry;
+    uint32_t      _index;
 };
