@@ -1,2 +1,1 @@
-# editor
-C++ Game Editor
+# C++ Game Editor
