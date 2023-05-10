@@ -13,6 +13,7 @@ public:
 
 private:
     Texture* _texture;
+
     int32_t  _width;
     int32_t  _height;
 };
