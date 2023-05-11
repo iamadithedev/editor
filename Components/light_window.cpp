@@ -1,9 +1,12 @@
 #include "light_window.hpp"
 
-void LightWindow::draw()
+LightWindow::LightWindow()
+    : EditorWindow { "Light" }
 {
-    ImGui::Begin("Light");
+}
 
+void LightWindow::draw_layout()
+{
     if (ImGui::InputFloat3("Position", (float*)&_position))
     {
         _light->position(_position);
@@ -13,8 +16,6 @@ void LightWindow::draw()
     {
         _light->color(_color);
     }
-
-    ImGui::End();
 }
 
 void LightWindow::set_light(Light* light)

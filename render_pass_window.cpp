@@ -1,9 +1,13 @@
 #include "render_pass_window.hpp"
 
-void RenderPassWindow::draw()
+RenderPassWindow::RenderPassWindow()
+    : EditorWindow { "RenderPass" }
+{
+}
+
+void RenderPassWindow::draw_layout()
 {
     ImGuiIO& io = ImGui::GetIO();
-    ImGui::Begin("RenderPass");
 
     if (ImGui::ColorEdit3("Clear color", (float*) &_clear_color, ImGuiColorEditFlags_NoOptions))
     {
@@ -11,8 +15,6 @@ void RenderPassWindow::draw()
     }
 
     ImGui::Text("%.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
-
-    ImGui::End();
 }
 
 void RenderPassWindow::set_render_pass(RenderPass* render_pass, const rgb& color)

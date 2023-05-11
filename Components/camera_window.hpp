@@ -7,7 +7,9 @@
 class CameraWindow final : public EditorWindow
 {
 public:
-    void draw() final;
+    CameraWindow();
+
+    void draw_layout() final;
 
     void set_camera(Camera* camera);
     void set_transform(Transform* transform, const vec3& position);

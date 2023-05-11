@@ -1,9 +1,12 @@
 #include "camera_window.hpp"
 
-void CameraWindow::draw()
+CameraWindow::CameraWindow()
+    : EditorWindow { "Camera" }
 {
-    ImGui::Begin("Camera");
+}
 
+void CameraWindow::draw_layout()
+{
     if (ImGui::InputFloat3("Position", (float*)&_position))
     {
         _transform->translate(_position);
@@ -13,8 +16,6 @@ void CameraWindow::draw()
     {
         _camera->field_of_view(_fov);
     }
-
-    ImGui::End();
 }
 
 void CameraWindow::set_camera(Camera* camera)

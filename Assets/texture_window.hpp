@@ -7,7 +7,9 @@
 class TextureWindow final : public EditorWindow
 {
 public:
-    void draw() final;
+    TextureWindow();
+
+    void draw_layout() final;
 
     void set_texture(Texture* texture, const TextureData& data);
 

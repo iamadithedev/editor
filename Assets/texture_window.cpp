@@ -1,11 +1,14 @@
 #include "texture_window.hpp"
 
-void TextureWindow::draw()
+TextureWindow::TextureWindow()
+    : EditorWindow { "Texture" }
 {
-    ImGui::Begin("Texture");
+}
+
+void TextureWindow::draw_layout()
+{
     ImGui::Image((void*)(intptr_t)_texture->handle(), { 256, 256 }); // TODO fix flipped image
     ImGui::Text("Width %.1i - Height %.1i", _width, _height);
-    ImGui::End();
 }
 
 void TextureWindow::set_texture(Texture* texture, const TextureData& data)

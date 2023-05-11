@@ -6,7 +6,9 @@
 class LightWindow final : public EditorWindow
 {
 public:
-    void draw() final;
+    LightWindow();
+
+    void draw_layout() final;
 
     void set_light(Light* light);
 

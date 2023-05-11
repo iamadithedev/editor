@@ -6,7 +6,9 @@
 class MaterialWindow final : public EditorWindow
 {
 public:
-    void draw() final;
+    MaterialWindow();
+
+    void draw_layout() final;
 
     void set_material(Material* material);
 

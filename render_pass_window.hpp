@@ -7,7 +7,9 @@
 class RenderPassWindow final : public EditorWindow
 {
 public:
-    void draw() final;
+    RenderPassWindow();
+
+    void draw_layout() final;
 
     void set_render_pass(RenderPass* render_pass, const rgb& color);
 
