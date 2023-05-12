@@ -71,7 +71,8 @@ void Editor::draw(Buffer* matrices_buffer)
 {
     #ifdef DEBUG
 
-    const auto& geometry = _debug.geometry();
+    const auto& geometry  = _debug.geometry();
+    auto  debug_mesh_part =  geometry.get_mesh_part();
 
     glm::mat4 model { 1.0f };
     matrices_buffer->sub_data(BufferData::make_data(&model));
@@ -82,7 +83,7 @@ void Editor::draw(Buffer* matrices_buffer)
     _debug_vertex_buffer.data(BufferData::make_data(geometry.vertices()));
     _debug_indices_buffer.data(BufferData::make_data(geometry.faces()));
 
-    glDrawElements(GL_LINES, (int32_t)geometry.faces().size() * 2, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_LINES, debug_mesh_part.count, GL_UNSIGNED_INT, reinterpret_cast<std::byte*>(debug_mesh_part.index));
 
     #endif
 
