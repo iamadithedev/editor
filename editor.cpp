@@ -15,7 +15,7 @@ void Editor::init(base::Window* window, Physics* physics)
     ImGui::CreateContext();
 
     ImGui_ImplGlfw_InitForOpenGL(((glfw::Window*)window)->handle(), true);
-    ImGui_ImplOpenGL3_Init("#version 130");
+    ImGui_ImplOpenGL3_Init();
 
     physics->add_debug(&_debug);
 
