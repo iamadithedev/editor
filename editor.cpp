@@ -67,7 +67,7 @@ void Editor::release()
 {
 }
 
-void Editor::draw(Buffer* matrices_buffer)
+void Editor::draw(Buffer* matrices_ubo)
 {
     #ifdef DEBUG
 
@@ -75,7 +75,7 @@ void Editor::draw(Buffer* matrices_buffer)
     auto  debug_mesh_part =  geometry.get_mesh_part();
 
     glm::mat4 model { 1.0f };
-    matrices_buffer->sub_data(BufferData::make_data(&model));
+    matrices_ubo->sub_data(BufferData::make_data(&model));
 
     _debug_program.bind();
     _debug_vertex_array.bind();
