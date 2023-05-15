@@ -11,7 +11,7 @@ void RenderPassWindow::draw_layout()
 
     if (ImGui::ColorEdit3("Clear color", (float*) &_clear_color, ImGuiColorEditFlags_NoOptions))
     {
-        _render_pass->clear_color(_clear_color.r, _clear_color.g, _clear_color.b);
+        _render_pass->clear_color(_clear_color);
     }
 
     ImGui::Text("%.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);

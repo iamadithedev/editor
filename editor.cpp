@@ -21,14 +21,14 @@ void Editor::init(base::Window* window, Physics* physics)
 
     // ==================================================================================
 
-    auto debug_vertex_source   = File::read("../debug_vert.glsl");
-    auto debug_fragment_source = File::read("../debug_frag.glsl");
+    auto debug_vertex_source   = File::read<char>("../glsl/debug.vert.glsl");
+    auto debug_fragment_source = File::read<char>("../glsl/debug.frag.glsl");
 
-    Shader debug_vertex_shader {"debug_vert.glsl", GL_VERTEX_SHADER };
+    Shader debug_vertex_shader { "debug.vert.glsl", GL_VERTEX_SHADER };
     debug_vertex_shader.create();
     debug_vertex_shader.source(debug_vertex_source.data());
 
-    Shader debug_fragment_shader {"debug_frag.glsl", GL_FRAGMENT_SHADER };
+    Shader debug_fragment_shader { "debug.frag.glsl", GL_FRAGMENT_SHADER };
     debug_fragment_shader.create();
     debug_fragment_shader.source(debug_fragment_source.data());
 
@@ -47,8 +47,8 @@ void Editor::init(base::Window* window, Physics* physics)
 
     vertex_attributes debug_vertex_attributes =
     {
-        { 0, 3, (int32_t)offsetof(mesh_vertex::debug, position) },
-        { 1, 3, (int32_t)offsetof(mesh_vertex::debug, color) }
+        { 0, 3, GL_FLOAT, (int32_t)offsetof(mesh_vertex::debug, position) },
+        { 1, 3, GL_FLOAT, (int32_t)offsetof(mesh_vertex::debug, color) }
     };
 
     _debug_vertex_array.create();
