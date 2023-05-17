@@ -24,21 +24,21 @@ void Editor::init(base::Window* window, Physics* physics)
     auto debug_vertex_source   = File::read<char>("../glsl/debug.vert.glsl");
     auto debug_fragment_source = File::read<char>("../glsl/debug.frag.glsl");
 
-    Shader debug_vertex_shader { "debug.vert.glsl", GL_VERTEX_SHADER };
+    ShaderStage debug_vertex_shader { "debug.vert.glsl", GL_VERTEX_SHADER };
     debug_vertex_shader.create();
     debug_vertex_shader.source(debug_vertex_source.data());
 
-    Shader debug_fragment_shader { "debug.frag.glsl", GL_FRAGMENT_SHADER };
+    ShaderStage debug_fragment_shader { "debug.frag.glsl", GL_FRAGMENT_SHADER };
     debug_fragment_shader.create();
     debug_fragment_shader.source(debug_fragment_source.data());
 
-    _debug_program.create();
-    _debug_program.attach(&debug_vertex_shader);
-    _debug_program.attach(&debug_fragment_shader);
-    _debug_program.link();
+    _debug_shader.create();
+    _debug_shader.attach(&debug_vertex_shader);
+    _debug_shader.attach(&debug_fragment_shader);
+    _debug_shader.link();
 
-    _debug_program.detach(&debug_vertex_shader);
-    _debug_program.detach(&debug_fragment_shader);
+    _debug_shader.detach(&debug_vertex_shader);
+    _debug_shader.detach(&debug_fragment_shader);
 
     debug_vertex_shader.destroy();
     debug_fragment_shader.destroy();

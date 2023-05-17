@@ -2,12 +2,12 @@
 
 #include "buffer.hpp"
 #include "physics.hpp"
-#include "program.hpp"
+#include "shader.hpp"
 #include "vertex_array.hpp"
 #include "physics_debug.hpp"
 #include "editor_window.hpp"
 
-#include "Base/window.hpp"
+#include "base/window.hpp"
 
 class Editor
 {
@@ -30,7 +30,7 @@ private:
     PhysicsDebug _debug;
     VertexArray  _debug_vertex_array;
 
-    Buffer  _debug_vertex_buffer;
-    Buffer  _debug_indices_buffer;
-    Program _debug_program;
+    Buffer _debug_vertex_buffer;
+    Buffer _debug_indices_buffer;
+    Shader _debug_shader;
 };
