@@ -2,16 +2,18 @@
 #include "file.hpp"
 
 #include "GLFW/window.hpp"
-//#define   DEBUG
+#define   DEBUG
 
 Editor::Editor()
-    : _debug_vertex_buffer  { GL_ARRAY_BUFFER,         GL_STATIC_DRAW }
-    , _debug_indices_buffer { GL_ELEMENT_ARRAY_BUFFER, GL_STATIC_DRAW }
+    : _debug_vbo { GL_ARRAY_BUFFER, GL_STATIC_DRAW }
+    , _debug_ibo { GL_ELEMENT_ARRAY_BUFFER, GL_STATIC_DRAW }
 {
 }
 
 void Editor::init(base::Window* window, Physics* physics)
 {
+    assert(window != nullptr);
+
     ImGui::CreateContext();
 
     ImGui_ImplGlfw_InitForOpenGL(((glfw::Window*)window)->handle(), true);
@@ -51,16 +53,16 @@ void Editor::init(base::Window* window, Physics* physics)
         { 1, 3, GL_FLOAT, (int32_t)offsetof(mesh_vertex::debug, color) }
     };
 
-    _debug_vertex_array.create();
-    _debug_vertex_array.bind();
+    _debug_vao.create();
+    _debug_vao.bind();
 
-    _debug_vertex_buffer.create();
-    _debug_vertex_buffer.bind();
+    _debug_vbo.create();
+    _debug_vbo.bind();
 
-    _debug_indices_buffer.create();
-    _debug_indices_buffer.bind();
+    _debug_ibo.create();
+    _debug_ibo.bind();
 
-    _debug_vertex_array.init_attributes_of_type<mesh_vertex::debug>(debug_vertex_attributes);
+    _debug_vao.init_attributes_of_type<mesh_vertex::debug>(debug_vertex_attributes);
 }
 
 void Editor::release()
@@ -71,19 +73,19 @@ void Editor::draw(Buffer* matrices_ubo)
 {
     #ifdef DEBUG
 
-    const auto& geometry  = _debug.geometry();
-    auto  debug_mesh_part =  geometry.get_mesh_part();
+    const auto& geometry = _debug.geometry();
+    auto  debug_submesh  = geometry.get_submesh();
 
     glm::mat4 model { 1.0f };
     matrices_ubo->sub_data(BufferData::make_data(&model));
 
-    _debug_program.bind();
-    _debug_vertex_array.bind();
+    _debug_shader.bind();
+    _debug_vao.bind();
 
-    _debug_vertex_buffer.data(BufferData::make_data(geometry.vertices()));
-    _debug_indices_buffer.data(BufferData::make_data(geometry.faces()));
+    _debug_vbo.data(BufferData::make_data(geometry.vertices()));
+    _debug_ibo.data(BufferData::make_data(geometry.faces()));
 
-    glDrawElements(GL_LINES, debug_mesh_part.count, GL_UNSIGNED_INT, reinterpret_cast<std::byte*>(debug_mesh_part.index));
+    glDrawElements(GL_LINES, debug_submesh.count, GL_UNSIGNED_INT, reinterpret_cast<std::byte*>(debug_submesh.index));
 
     #endif
 

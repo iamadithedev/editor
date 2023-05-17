@@ -28,9 +28,9 @@ private:
     std::vector<EditorWindow*> _windows;
 
     PhysicsDebug _debug;
-    VertexArray  _debug_vertex_array;
+    VertexArray  _debug_vao;
 
-    Buffer _debug_vertex_buffer;
-    Buffer _debug_indices_buffer;
     Shader _debug_shader;
+    Buffer _debug_vbo;
+    Buffer _debug_ibo;
 };
