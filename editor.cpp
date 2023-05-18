@@ -10,7 +10,7 @@ Editor::Editor()
 {
 }
 
-void Editor::init(base::Window* window, Physics* physics)
+void Editor::init(base::Window* window, PhysicsWorld* physics)
 {
     assert(window != nullptr);
 

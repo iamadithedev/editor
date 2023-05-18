@@ -1,8 +1,8 @@
 #pragma once
 
 #include "buffer.hpp"
-#include "physics.hpp"
 #include "shader.hpp"
+#include "physics_world.hpp"
 #include "vertex_array.hpp"
 #include "physics_debug.hpp"
 #include "editor_window.hpp"
@@ -14,7 +14,7 @@ class Editor
 public:
     Editor();
 
-    void init(base::Window* window, Physics* physics);
+    void init(base::Window* window, PhysicsWorld* physics);
     void release();
 
     void draw(Buffer* matrices_ubo);
