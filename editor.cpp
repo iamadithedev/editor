@@ -2,7 +2,7 @@
 #include "file.hpp"
 
 #include "GLFW/window.hpp"
-#define   DEBUG
+//#define   DEBUG
 
 Editor::Editor()
     : _debug_vbo { GL_ARRAY_BUFFER, GL_STATIC_DRAW }
@@ -23,8 +23,8 @@ void Editor::init(base::Window* window, PhysicsWorld* physics)
 
     // ==================================================================================
 
-    auto debug_vertex_source   = File::read<char>("../glsl/debug.vert.glsl");
-    auto debug_fragment_source = File::read<char>("../glsl/debug.frag.glsl");
+    auto debug_vertex_source   = File::read<char>("../Assets/glsl/debug.vert.glsl");
+    auto debug_fragment_source = File::read<char>("../Assets/glsl/debug.frag.glsl");
 
     ShaderStage debug_vertex_shader { "debug.vert.glsl", GL_VERTEX_SHADER };
     debug_vertex_shader.create();
