@@ -17,7 +17,7 @@ public:
     void init(base::Window* window, PhysicsWorld* physics);
     void release();
 
-    void draw(Buffer* matrices_ubo);
+    void draw(const Buffer* matrices_ubo);
 
     void begin(int32_t width, int32_t height, float total_time);
     void end();

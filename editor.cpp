@@ -5,7 +5,7 @@
 //#define   DEBUG
 
 Editor::Editor()
-    : _debug_vbo { GL_ARRAY_BUFFER, GL_STATIC_DRAW }
+    : _debug_vbo { GL_ARRAY_BUFFER,         GL_STATIC_DRAW }
     , _debug_ibo { GL_ELEMENT_ARRAY_BUFFER, GL_STATIC_DRAW }
 {
 }
@@ -69,7 +69,7 @@ void Editor::release()
 {
 }
 
-void Editor::draw(Buffer* matrices_ubo)
+void Editor::draw(const Buffer* matrices_ubo)
 {
     #ifdef DEBUG
 
