@@ -28,11 +28,11 @@ void Editor::init(base::Window* window, PhysicsWorld* physics)
 
     ShaderStage debug_vertex_shader { "debug.vert.glsl", GL_VERTEX_SHADER };
     debug_vertex_shader.create();
-    debug_vertex_shader.source(debug_vertex_source.data());
+    debug_vertex_shader.source(debug_vertex_source);
 
     ShaderStage debug_fragment_shader { "debug.frag.glsl", GL_FRAGMENT_SHADER };
     debug_fragment_shader.create();
-    debug_fragment_shader.source(debug_fragment_source.data());
+    debug_fragment_shader.source(debug_fragment_source);
 
     _debug_shader.create();
     _debug_shader.attach(&debug_vertex_shader);
