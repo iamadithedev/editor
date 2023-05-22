@@ -7,7 +7,7 @@ class PhysicsDebug final : public btIDebugDraw
 public:
     PhysicsDebug();
 
-    [[nodiscard]] const line_geometry& geometry() const;
+    [[nodiscard]] const LineGeometry& geometry() const;
 
 private:
     void clearLines() final;
@@ -17,6 +17,6 @@ private:
 
     [[nodiscard]] int32_t getDebugMode() const final;
 
-    line_geometry _geometry;
-    uint32_t      _index;
+    LineGeometry _geometry;
+    uint32_t     _index;
 };
