@@ -13,7 +13,7 @@ private:
     void clearLines() final;
     void flushLines() final;
 
-    void drawLine(const btVector3 &a, const btVector3 &b, const btVector3 &color) final;
+    void drawLine(const btVector3& a, const btVector3& b, const btVector3& color) final;
 
     [[nodiscard]] int32_t getDebugMode() const final;
 
