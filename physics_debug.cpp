@@ -33,7 +33,7 @@ void PhysicsDebug::clearLines()
     _index = 0;
 }
 
-const LineGeometry& PhysicsDebug::geometry() const
+const geometry::line& PhysicsDebug::geometry() const
 {
     return _geometry;
 }
