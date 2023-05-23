@@ -7,7 +7,7 @@ PhysicsDebug::PhysicsDebug()
 
 void PhysicsDebug::drawLine(const btVector3& a, const btVector3& b, const btVector3& color)
 {
-    rgb rgb { color.x(), color.y(), color.z() };
+     rgb rgb { color.x(), color.y(), color.z() };
 
     _geometry.add_vertex({{ a.x(), a.y(), a.z() }, rgb });
     _geometry.add_vertex({{ b.x(), b.y(), b.z() }, rgb });
