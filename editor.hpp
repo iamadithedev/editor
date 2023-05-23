@@ -6,6 +6,7 @@
 #include "vertex_array.hpp"
 #include "physics_debug.hpp"
 #include "editor_window.hpp"
+#include "resource_manager.hpp"
 
 #include "base/window.hpp"
 
@@ -14,7 +15,7 @@ class Editor
 public:
     Editor();
 
-    void init(base::Window* window, PhysicsWorld* physics);
+    void init(base::Window* window, ResourceManager* resources, PhysicsWorld* physics);
     void release();
 
     void draw(const Buffer* matrices_ubo);
@@ -30,7 +31,7 @@ private:
     PhysicsDebug _debug;
     VertexArray  _debug_vao;
 
-    Shader _debug_shader;
-    Buffer _debug_vbo;
-    Buffer _debug_ibo;
+    Shader* _debug_shader;
+    Buffer  _debug_vbo;
+    Buffer  _debug_ibo;
 };

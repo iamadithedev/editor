@@ -1,5 +1,4 @@
 #include "editor.hpp"
-#include "file.hpp"
 
 #include "GLFW/window.hpp"
 //#define   DEBUG
@@ -10,7 +9,7 @@ Editor::Editor()
 {
 }
 
-void Editor::init(base::Window* window, PhysicsWorld* physics)
+void Editor::init(base::Window* window, ResourceManager* resources, PhysicsWorld* physics)
 {
     assert(window != nullptr);
 
@@ -23,27 +22,7 @@ void Editor::init(base::Window* window, PhysicsWorld* physics)
 
     // ==================================================================================
 
-    auto debug_vertex_source   = File::read<char>("../Assets/glsl/debug.vert.glsl");
-    auto debug_fragment_source = File::read<char>("../Assets/glsl/debug.frag.glsl");
-
-    ShaderStage debug_vertex_shader { "debug.vert.glsl", GL_VERTEX_SHADER };
-    debug_vertex_shader.create();
-    debug_vertex_shader.source(debug_vertex_source);
-
-    ShaderStage debug_fragment_shader { "debug.frag.glsl", GL_FRAGMENT_SHADER };
-    debug_fragment_shader.create();
-    debug_fragment_shader.source(debug_fragment_source);
-
-    _debug_shader.create();
-    _debug_shader.attach(&debug_vertex_shader);
-    _debug_shader.attach(&debug_fragment_shader);
-    _debug_shader.link();
-
-    _debug_shader.detach(&debug_vertex_shader);
-    _debug_shader.detach(&debug_fragment_shader);
-
-    debug_vertex_shader.destroy();
-    debug_fragment_shader.destroy();
+    _debug_shader = resources->load<Shader>("debug_shader.asset");
 
     // ==================================================================================
 
@@ -79,7 +58,7 @@ void Editor::draw(const Buffer* matrices_ubo)
     glm::mat4 model { 1.0f };
     matrices_ubo->sub_data(BufferData::make_data(&model));
 
-    _debug_shader.bind();
+    _debug_shader->bind();
     _debug_vao.bind();
 
     _debug_vbo.data(BufferData::make_data(geometry.vertices()));
